@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "node"
+  - "lts/*"
+  - "10"
+env:
+  - MOCHA_VERSION=6
+  - MOCHA_VERSION=5
+  - MOCHA_VERSION=4
+cache: npm
+install:
+  - npm install mocha@$MOCHA_VERSION
+  - npm install
+after_success:
+  - npm run report-coverage

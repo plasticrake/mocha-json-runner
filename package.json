@@ -1,0 +1,45 @@
+{
+  "name": "mocha-json-runner",
+  "version": "0.0.0",
+  "description": "A Mocha.js runner that replays from JSON input",
+  "keywords": [
+    "mocha",
+    "json"
+  ],
+  "homepage": "https://github.com/plasticrake/mocha-json-runner#readme",
+  "bugs": {
+    "url": "https://github.com/plasticrake/mocha-json-runner/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plasticrake/mocha-json-runner.git"
+  },
+  "license": "MIT",
+  "author": "Patrick Seal",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "release": "standard-version --sign",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "test": "nyc mocha"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "codecov": "^3.6.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "mocha": ">=4",
+    "nyc": "^14.1.1",
+    "prettier": "^1.19.1",
+    "sinon": "^7.5.0",
+    "standard-version": "^7.0.1"
+  },
+  "peerDependencies": {
+    "mocha": ">=4"
+  }
+}
