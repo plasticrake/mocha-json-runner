@@ -28,31 +28,24 @@ const STATE_PASSED = 'passed';
 
 const MochaJsonRunner = require('../lib/mocha-json-runner');
 
-let stdout;
-const gather = function(chunk) {
-  stdout.push(chunk);
-};
+function runRunner(runner) {
+  const stdout = [];
+  sinon.stub(process.stdout, 'write').callsFake(o => stdout.push(o));
 
-describe('MochaJsonRunner', function() {
+  try {
+    runner.run();
+  } catch (err) {
+    sinon.restore();
+    throw err;
+  }
+  sinon.restore();
+  return stdout.join('\n');
+}
+
+function testReporters(obj) {
   let runner;
 
   beforeEach(function() {
-    const obj = {
-      title: '',
-      tests: [
-        {
-          title: 'passes',
-          state: STATE_PASSED,
-        },
-        {
-          title: 'fails',
-          state: STATE_FAILED,
-          err: new TypeError('FAIL'),
-        },
-      ],
-      suites: [],
-    };
-
     runner = new MochaJsonRunner(JSON.stringify(obj));
   });
 
@@ -61,18 +54,66 @@ describe('MochaJsonRunner', function() {
       it('should run without error', function() {
         // eslint-disable-next-line no-new
         new Reporter(runner);
-
-        stdout = [];
-        sinon.stub(process.stdout, 'write').callsFake(gather);
-        try {
-          runner.run();
-        } catch (err) {
-          sinon.restore();
-          throw err;
-        }
-        sinon.restore();
+        runRunner(runner);
       });
+
+      if (obj.stats) {
+        it('stats should match input', function() {
+          // eslint-disable-next-line no-new
+          new Reporter(runner);
+          runRunner(runner);
+
+          const runnerStats = JSON.parse(
+            JSON.stringify(runner.stats),
+            (key, value) => {
+              if (key === 'end' || key === 'start') {
+                return new Date(value);
+              }
+              return value;
+            }
+          );
+
+          expect(runnerStats).to.eql(obj.stats);
+        });
+      }
     });
+  });
+}
+
+describe('MochaJsonRunner', function() {
+  const obj = {
+    title: '',
+    tests: [
+      {
+        title: 'passes',
+        state: STATE_PASSED,
+      },
+      {
+        title: 'fails',
+        state: STATE_FAILED,
+        err: new TypeError('FAIL'),
+      },
+    ],
+    suites: [],
+  };
+
+  describe('with stats', function() {
+    const stats = {
+      suites: 1,
+      tests: 1,
+      passes: 1,
+      pending: 1,
+      failures: 1,
+      start: new Date(1e12),
+      end: new Date(1e12),
+      duration: 1,
+    };
+
+    testReporters({ stats, suite: obj });
+  });
+
+  describe('without stats', function() {
+    testReporters(obj);
   });
 });
 
@@ -87,20 +128,21 @@ describe('back and forth 🐍', function() {
     delete require.cache[require.resolve('./fixtures/mocha-test.fixture.js')];
     mocha.addFile('./test/fixtures/mocha-test.fixture.js');
 
-    stdout = [];
-    sinon.stub(process.stdout, 'write').callsFake(gather);
+    const stdout = [];
+    sinon.stub(process.stdout, 'write').callsFake(o => {
+      stdout.push(o);
+    });
     try {
       mocha.run(function() {
+        sinon.restore();
+
         objOutput = JSON.parse(stdout.join('\n'));
 
-        stdout = [];
         const jsonRunner = new MochaJsonRunner(objOutput);
         // eslint-disable-next-line no-new
         new JsonSerializeReporter(jsonRunner);
-        jsonRunner.run();
-        sinon.restore();
-
-        objOutput2 = JSON.parse(stdout.join('\n'));
+        const json = runRunner(jsonRunner);
+        objOutput2 = JSON.parse(json);
 
         done();
       });
