@@ -13,6 +13,5 @@ const json = JSON.stringify({
 });
 
 const runner = new MochaJsonRunner(json);
-// eslint-disable-next-line no-new
 new Mocha.reporters.Spec(runner);
 runner.run();

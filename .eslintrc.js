@@ -5,6 +5,15 @@ module.exports = {
     node: false,
   },
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  overrides: [
+    {
+      files: ['examples/*.js'],
+      rules: {
+        'import/no-unresolved': 'off',
+        'no-new': 'off',
+      },
+    },
+  ],
   parserOptions: {
     ecmaVersion: 2018,
   },
