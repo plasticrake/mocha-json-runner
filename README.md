@@ -8,7 +8,7 @@
 
 **A [Mocha.js](https://mochajs.org/) runner that replays from JSON input**
 
-Pairs well with [mocha-json-serialize-reporter](https://https://github.com/plasticrake/mocha-json-serialize-reporter)!
+Pairs well with [mocha-json-serialize-reporter](https://github.com/plasticrake/mocha-json-serialize-reporter)!
 
 ## Usage
 
