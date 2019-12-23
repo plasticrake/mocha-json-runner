@@ -29,6 +29,7 @@
     "test": "nyc mocha"
   },
   "dependencies": {
+    "mocha": "^6.2.2",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
@@ -39,14 +40,10 @@
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "mocha": "^6.2.2",
     "mocha-json-serialize-reporter": "^1.0.0",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "sinon": "^8.0.1",
     "standard-version": "^7.0.1"
-  },
-  "peerDependencies": {
-    "mocha": ">=6"
   }
 }
