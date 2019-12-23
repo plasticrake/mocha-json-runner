@@ -6,7 +6,9 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/plasticrake/mocha-json-runner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/plasticrake/mocha-json-runner/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/plasticrake/mocha-json-runner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/plasticrake/mocha-json-runner/context:javascript)
 
-A [Mocha.js](https://mochajs.org/) runner that replays from JSON input
+**A [Mocha.js](https://mochajs.org/) runner that replays from JSON input**
+
+Pairs well with [mocha-json-serialize-reporter](https://https://github.com/plasticrake/mocha-json-serialize-reporter)!
 
 ## Usage
 
