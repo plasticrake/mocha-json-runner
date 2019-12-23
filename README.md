@@ -10,9 +10,57 @@ A [Mocha.js](https://mochajs.org/) runner that replays from JSON input
 
 ## Usage
 
-If using mocha programatically:
+### Command-line
 
-```bash
+```shell
+npm install --global mocha-json-runner
+```
+
+```shell
+mocha-json-runner ./path/to/input.json
+```
+
+```shell
+mocha-json-runner --help
+```
+
+```text
+mocha-json-runner [json..]
+
+Playback JSON test results with Mocha
+
+Commands
+  mocha-json-runner debug [json..]  Playback JSON test results with Mocha
+                                                                       [default]
+
+Reporting & Output
+  --color, -c, --colors                     Force-enable color output  [boolean]
+  --diff                                    Show diff on failure
+                                                       [boolean] [default: true]
+  --full-trace                              Display full stack traces  [boolean]
+  --growl, -G                               Enable Growl notifications [boolean]
+  --inline-diffs                            Display actual/expected differences
+                                            inline within each string  [boolean]
+  --reporter, -R                            Specify reporter to use
+                                                      [string] [default: "spec"]
+  --reporter-option, --reporter-options,    Reporter-specific options
+  -O                                        (<k=v,[k1=v1,..]>)           [array]
+
+File Handling
+  --require, -r  Require module                        [array] [default: (none)]
+
+Positional Arguments
+  json  One file to load and playback
+
+Other Options
+  --help, -h     Show usage information & exit                         [boolean]
+  --version, -V  Show version number & exit                            [boolean]
+  --reporters    List built-in reporters & exit                        [boolean]
+```
+
+### Programaticaly
+
+```shell
 npm install --save-dev mocha-json-runner
 ```
 
@@ -32,13 +80,13 @@ const json = JSON.stringify({
 });
 
 const runner = new MochaJsonRunner(json);
-// eslint-disable-next-line no-new
 new Mocha.reporters.Spec(runner);
 runner.run();
 ```
 
-Output:
+**Output:**
 
+<!-- markdownlint-disable MD033 -->
 <pre>
 <code>
 <span style="color:#0A0">  ✓</span><span style="color:#555"> passing test</span>
@@ -53,6 +101,7 @@ Output:
 <span style="color:#A00">     FAIL</span><span style="color:#555"></span>
 </code>
 </pre>
+<!-- markdownlint-enable MD033 -->
 
 ## License
 
