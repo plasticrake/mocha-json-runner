@@ -1,7 +1,7 @@
-/* globals process */
 const { expect } = require('chai');
 const Mocha = require('mocha');
 const JsonSerializeReporter = require('mocha-json-serialize-reporter');
+const path = require('path');
 const sinon = require('sinon');
 
 const { reporters } = Mocha;
@@ -42,6 +42,35 @@ function runRunner(runner) {
   return stdout.join('\n');
 }
 
+async function runJsonSerializeReporter(files) {
+  const mocha = new Mocha();
+  mocha.reporter(JsonSerializeReporter);
+
+  if (files && files.length > 0) {
+    files.forEach(function(file) {
+      delete require.cache[require.resolve(file)];
+      mocha.addFile(path.resolve('./test', file));
+    });
+  }
+
+  const stdout = [];
+  sinon.stub(process.stdout, 'write').callsFake(o => {
+    stdout.push(o);
+  });
+
+  await new Promise((resolve, reject) => {
+    try {
+      mocha.run(resolve);
+    } catch (err) {
+      sinon.restore();
+      reject(err);
+    }
+  });
+
+  sinon.restore();
+  return stdout.join('\n');
+}
+
 function testReporters(obj) {
   let runner;
 
@@ -57,12 +86,26 @@ function testReporters(obj) {
         runRunner(runner);
       });
 
+      it('stats start and end should be dates', function() {
+        // eslint-disable-next-line no-new
+        new Reporter(runner);
+        runRunner(runner);
+
+        expect(runner.stats)
+          .to.have.property('start')
+          .is.a('date');
+        expect(runner.stats)
+          .to.have.property('end')
+          .is.a('date');
+      });
+
       if (obj.stats) {
         it('stats should match input', function() {
           // eslint-disable-next-line no-new
           new Reporter(runner);
           runRunner(runner);
 
+          // console.dir(runner.stats);
           const runnerStats = JSON.parse(
             JSON.stringify(runner.stats),
             (key, value) => {
@@ -74,6 +117,15 @@ function testReporters(obj) {
           );
 
           expect(runnerStats).to.eql(obj.stats);
+        });
+      } else {
+        it('stats start and end should default to epoch', function() {
+          // eslint-disable-next-line no-new
+          new Reporter(runner);
+          runRunner(runner);
+
+          expect(runner.stats.start.getTime()).to.eql(0);
+          expect(runner.stats.end.getTime()).to.eql(0);
         });
       }
     });
@@ -121,35 +173,18 @@ describe('back and forth 🐍', function() {
   let objOutput;
   let objOutput2;
 
-  before(function(done) {
-    const mocha = new Mocha();
-    mocha.reporter(JsonSerializeReporter);
+  before(async function() {
+    const json = await runJsonSerializeReporter([
+      './fixtures/mocha-test.fixture.js',
+    ]);
 
-    delete require.cache[require.resolve('./fixtures/mocha-test.fixture.js')];
-    mocha.addFile('./test/fixtures/mocha-test.fixture.js');
+    objOutput = JSON.parse(json);
 
-    const stdout = [];
-    sinon.stub(process.stdout, 'write').callsFake(o => {
-      stdout.push(o);
-    });
-    try {
-      mocha.run(function() {
-        sinon.restore();
-
-        objOutput = JSON.parse(stdout.join('\n'));
-
-        const jsonRunner = new MochaJsonRunner(objOutput);
-        // eslint-disable-next-line no-new
-        new JsonSerializeReporter(jsonRunner);
-        const json = runRunner(jsonRunner);
-        objOutput2 = JSON.parse(json);
-
-        done();
-      });
-    } catch (e) {
-      sinon.restore();
-      throw e;
-    }
+    const jsonRunner = new MochaJsonRunner(json);
+    // eslint-disable-next-line no-new
+    new JsonSerializeReporter(jsonRunner);
+    const json2 = runRunner(jsonRunner);
+    objOutput2 = JSON.parse(json2);
   });
 
   it('should match', function() {
