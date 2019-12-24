@@ -1,4 +1,3 @@
-/* globals setTimeout */
 const assert = require('assert');
 
 it('test in the root suite', function() {});
