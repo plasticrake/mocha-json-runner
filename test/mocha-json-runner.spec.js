@@ -184,6 +184,35 @@ describe('MochaJsonRunner', function() {
     });
   });
 
+  describe('~parseSuite', function() {
+    let parseSuite;
+    before(function() {
+      // eslint-disable-next-line no-underscore-dangle
+      parseSuite = MochaJsonRunner.__get__('parseSuite');
+    });
+
+    it('should override `suite.root` with `isRoot` when `root` is not defined or null', function() {
+      expect(parseSuite({ title: '' }, true)).to.have.property('root', true);
+
+      expect(parseSuite({ title: '', root: null }, true)).to.have.property(
+        'root',
+        true
+      );
+    });
+
+    it('should not override `suite.root` with `isRoot` when `root` is true', function() {
+      expect(
+        parseSuite({ title: '', root: true }, true),
+        'isRoot=true'
+      ).to.have.property('root', true);
+
+      expect(
+        parseSuite({ title: '', root: true }, false),
+        'isRoot=false'
+      ).to.have.property('root', true);
+    });
+  });
+
   describe('with stats', function() {
     const stats = {
       suites: 1,
