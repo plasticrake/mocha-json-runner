@@ -60,7 +60,7 @@ Other Options
   --reporters    List built-in reporters & exit                        [boolean]
 ```
 
-### Programaticaly
+### Programmatically
 
 ```shell
 npm install --save-dev mocha-json-runner
