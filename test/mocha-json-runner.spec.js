@@ -150,6 +150,26 @@ describe('MochaJsonRunner', function() {
     suites: [],
   };
 
+  describe('#run', function() {
+    it('should throw when a test has an unexpected state', function() {
+      const runner = new MochaJsonRunner({
+        suite: {
+          title: '',
+          tests: [
+            {
+              title: 'Test with an unexpected state',
+              state: 'an unexpected state',
+            },
+          ],
+        },
+      });
+
+      expect(() => {
+        runner.run();
+      }).to.throw('Unexpected test.state');
+    });
+  });
+
   describe('~createTest', function() {
     let createTest;
     before(function() {
