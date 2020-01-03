@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const Mocha = require('mocha');
+const rewire = require('rewire');
 const JsonSerializeReporter = require('mocha-json-serialize-reporter');
 const path = require('path');
 const sinon = require('sinon');
@@ -26,7 +27,7 @@ const reportersArray = [
 const STATE_FAILED = 'failed';
 const STATE_PASSED = 'passed';
 
-const MochaJsonRunner = require('../lib/mocha-json-runner');
+const MochaJsonRunner = rewire('../lib/mocha-json-runner');
 
 function runRunner(runner) {
   const stdout = [];
@@ -148,6 +149,20 @@ describe('MochaJsonRunner', function() {
     ],
     suites: [],
   };
+
+  describe('~createTest', function() {
+    let createTest;
+    before(function() {
+      // eslint-disable-next-line no-underscore-dangle
+      createTest = MochaJsonRunner.__get__('createTest');
+    });
+
+    it('should throw when failed test is missing an `err` property', function() {
+      expect(() => {
+        createTest({ state: 'failed' });
+      }).to.throw('A failed test must have an "err" property');
+    });
+  });
 
   describe('with stats', function() {
     const stats = {

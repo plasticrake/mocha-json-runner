@@ -43,6 +43,7 @@
     "mocha-json-serialize-reporter": "^1.1.0",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
+    "rewire": "^4.0.1",
     "sinon": "^8.0.1",
     "standard-version": "^7.0.1"
   }
