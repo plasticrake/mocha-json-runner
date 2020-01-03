@@ -146,6 +146,10 @@ describe('MochaJsonRunner', function() {
         state: STATE_FAILED,
         err: new TypeError('FAIL'),
       },
+      {
+        title: 'pending',
+        pending: true,
+      },
     ],
     suites: [],
   };
