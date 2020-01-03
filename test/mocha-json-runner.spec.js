@@ -150,6 +150,35 @@ describe('MochaJsonRunner', function() {
     suites: [],
   };
 
+  describe('constructor', function() {
+    it('should accept an Object', function() {
+      expect(new MochaJsonRunner({ suite: { title: 'My Root Suite' } }))
+        .to.have.property('suite')
+        .with.property('title', 'My Root Suite');
+    });
+
+    it('should accept a JSON string', function() {
+      expect(new MochaJsonRunner('{ "suite": { "title": "My Root Suite" } }'))
+        .to.have.property('suite')
+        .with.property('title', 'My Root Suite');
+    });
+
+    it('should throw when json is missing a suite', function() {
+      expect(() => {
+        // eslint-disable-next-line no-new
+        new MochaJsonRunner({});
+      }).to.throw(TypeError, 'Unexpected JSON object, missing root suite');
+    });
+
+    it('should not throw when json has a suite', function() {
+      // eslint-disable-next-line no-unused-expressions
+      expect(() => {
+        // eslint-disable-next-line no-new
+        new MochaJsonRunner({ suite: {} });
+      }).to.not.throw;
+    });
+  });
+
   describe('#run', function() {
     it('should throw when a test has an unexpected state', function() {
       const runner = new MochaJsonRunner({
