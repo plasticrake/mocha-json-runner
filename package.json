@@ -30,21 +30,21 @@
   },
   "dependencies": {
     "mocha": "^6.2.2",
-    "yargs": "^15.0.2"
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "codecov": "^3.6.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-prettier": "^3.1.2",
     "mocha-json-serialize-reporter": "^1.1.0",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "rewire": "^4.0.1",
-    "sinon": "^8.0.1",
+    "sinon": "^8.0.2",
     "standard-version": "^7.0.1"
   }
 }
