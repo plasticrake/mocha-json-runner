@@ -203,49 +203,6 @@ describe('MochaJsonRunner', function() {
     });
   });
 
-  describe('~createTest', function() {
-    let createTest;
-    before(function() {
-      // eslint-disable-next-line no-underscore-dangle
-      createTest = MochaJsonRunner.__get__('createTest');
-    });
-
-    it('should throw when failed test is missing an `err` property', function() {
-      expect(() => {
-        createTest({ state: 'failed' });
-      }).to.throw('A failed test must have an "err" property');
-    });
-  });
-
-  describe('~parseSuite', function() {
-    let parseSuite;
-    before(function() {
-      // eslint-disable-next-line no-underscore-dangle
-      parseSuite = MochaJsonRunner.__get__('parseSuite');
-    });
-
-    it('should override `suite.root` with `isRoot` when `root` is not defined or null', function() {
-      expect(parseSuite({ title: '' }, true)).to.have.property('root', true);
-
-      expect(parseSuite({ title: '', root: null }, true)).to.have.property(
-        'root',
-        true
-      );
-    });
-
-    it('should not override `suite.root` with `isRoot` when `root` is true', function() {
-      expect(
-        parseSuite({ title: '', root: true }, true),
-        'isRoot=true'
-      ).to.have.property('root', true);
-
-      expect(
-        parseSuite({ title: '', root: true }, false),
-        'isRoot=false'
-      ).to.have.property('root', true);
-    });
-  });
-
   describe('with stats', function() {
     const stats = {
       suites: 1,

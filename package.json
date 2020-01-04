@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "mocha": "^6.2.2",
+    "mocha-json-deserialize": "^1.0.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
