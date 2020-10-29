@@ -31,7 +31,7 @@ const MochaJsonRunner = rewire('../lib/mocha-json-runner');
 
 function runRunner(runner) {
   const stdout = [];
-  sinon.stub(process.stdout, 'write').callsFake(o => stdout.push(o));
+  sinon.stub(process.stdout, 'write').callsFake((o) => stdout.push(o));
 
   try {
     runner.run();
@@ -48,14 +48,14 @@ async function runJsonSerializeReporter(files) {
   mocha.reporter(JsonSerializeReporter);
 
   if (files && files.length > 0) {
-    files.forEach(function(file) {
+    files.forEach(function (file) {
       delete require.cache[require.resolve(file)];
       mocha.addFile(path.resolve('./test', file));
     });
   }
 
   const stdout = [];
-  sinon.stub(process.stdout, 'write').callsFake(o => {
+  sinon.stub(process.stdout, 'write').callsFake((o) => {
     stdout.push(o);
   });
 
@@ -75,33 +75,29 @@ async function runJsonSerializeReporter(files) {
 function testReporters(obj) {
   let runner;
 
-  beforeEach(function() {
+  beforeEach(function () {
     runner = new MochaJsonRunner(JSON.stringify(obj));
   });
 
-  reportersArray.forEach(function(Reporter) {
-    describe(Reporter.name, function() {
-      it('should run without error', function() {
+  reportersArray.forEach(function (Reporter) {
+    describe(Reporter.name, function () {
+      it('should run without error', function () {
         // eslint-disable-next-line no-new
         new Reporter(runner);
         runRunner(runner);
       });
 
-      it('stats start and end should be dates', function() {
+      it('stats start and end should be dates', function () {
         // eslint-disable-next-line no-new
         new Reporter(runner);
         runRunner(runner);
 
-        expect(runner.stats)
-          .to.have.property('start')
-          .is.a('date');
-        expect(runner.stats)
-          .to.have.property('end')
-          .is.a('date');
+        expect(runner.stats).to.have.property('start').is.a('date');
+        expect(runner.stats).to.have.property('end').is.a('date');
       });
 
       if (obj.stats) {
-        it('stats should match input', function() {
+        it('stats should match input', function () {
           // eslint-disable-next-line no-new
           new Reporter(runner);
           runRunner(runner);
@@ -120,7 +116,7 @@ function testReporters(obj) {
           expect(runnerStats).to.eql(obj.stats);
         });
       } else {
-        it('stats start and end should default to epoch', function() {
+        it('stats start and end should default to epoch', function () {
           // eslint-disable-next-line no-new
           new Reporter(runner);
           runRunner(runner);
@@ -133,7 +129,7 @@ function testReporters(obj) {
   });
 }
 
-describe('MochaJsonRunner', function() {
+describe('MochaJsonRunner', function () {
   const obj = {
     title: '',
     tests: [
@@ -154,27 +150,27 @@ describe('MochaJsonRunner', function() {
     suites: [],
   };
 
-  describe('constructor', function() {
-    it('should accept an Object', function() {
+  describe('constructor', function () {
+    it('should accept an Object', function () {
       expect(new MochaJsonRunner({ suite: { title: 'My Root Suite' } }))
         .to.have.property('suite')
         .with.property('title', 'My Root Suite');
     });
 
-    it('should accept a JSON string', function() {
+    it('should accept a JSON string', function () {
       expect(new MochaJsonRunner('{ "suite": { "title": "My Root Suite" } }'))
         .to.have.property('suite')
         .with.property('title', 'My Root Suite');
     });
 
-    it('should throw when json is missing a suite', function() {
+    it('should throw when json is missing a suite', function () {
       expect(() => {
         // eslint-disable-next-line no-new
         new MochaJsonRunner({});
       }).to.throw(TypeError, 'Unexpected JSON object, missing root suite');
     });
 
-    it('should not throw when json has a suite', function() {
+    it('should not throw when json has a suite', function () {
       // eslint-disable-next-line no-unused-expressions
       expect(() => {
         // eslint-disable-next-line no-new
@@ -183,8 +179,8 @@ describe('MochaJsonRunner', function() {
     });
   });
 
-  describe('#run', function() {
-    it('should throw when a test has an unexpected state', function() {
+  describe('#run', function () {
+    it('should throw when a test has an unexpected state', function () {
       const runner = new MochaJsonRunner({
         suite: {
           title: '',
@@ -203,7 +199,7 @@ describe('MochaJsonRunner', function() {
     });
   });
 
-  describe('with stats', function() {
+  describe('with stats', function () {
     const stats = {
       suites: 1,
       tests: 1,
@@ -218,16 +214,16 @@ describe('MochaJsonRunner', function() {
     testReporters({ stats, suite: obj });
   });
 
-  describe('without stats', function() {
+  describe('without stats', function () {
     testReporters(obj);
   });
 });
 
-describe('back and forth 🐍', function() {
+describe('back and forth 🐍', function () {
   let objOutput;
   let objOutput2;
 
-  before(async function() {
+  before(async function () {
     const json = await runJsonSerializeReporter([
       './fixtures/mocha-test.fixture.js',
     ]);
@@ -241,7 +237,7 @@ describe('back and forth 🐍', function() {
     objOutput2 = JSON.parse(json2);
   });
 
-  it('should match', function() {
+  it('should match', function () {
     expect(objOutput2).to.eql(objOutput);
   });
 });
