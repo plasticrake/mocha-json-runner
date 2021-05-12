@@ -16,15 +16,15 @@
   },
   "license": "MIT",
   "author": "Patrick Seal",
+  "main": "lib/mocha-json-runner.js",
+  "bin": "lib/cli.js",
   "files": [
     "lib"
   ],
-  "main": "lib/mocha-json-runner.js",
-  "bin": "lib/cli.js",
   "scripts": {
+    "coverage-report-lcov": "nyc report --reporter=lcov",
     "lint": "eslint .",
     "release": "standard-version --sign",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "pretest": "npm run lint",
     "test": "nyc mocha"
   },
