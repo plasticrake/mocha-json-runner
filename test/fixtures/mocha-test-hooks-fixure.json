@@ -1,0 +1,1010 @@
+{
+  "suite": {
+    "title": "",
+    "pending": false,
+    "root": true,
+    "timeout": 2000,
+    "slow": 75,
+    "retries": -1,
+    "tests": [
+      {
+        "title": "test in the root suite",
+        "body": "function () {}",
+        "timedOut": false,
+        "pending": false,
+        "type": "test",
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "duration": 0,
+        "state": "passed",
+        "speed": "fast",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1,
+        "currentRetry": 0
+      }
+    ],
+    "suites": [
+      {
+        "title": "suite one",
+        "pending": false,
+        "root": false,
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1,
+        "tests": [
+          {
+            "title": "test that passes",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test that fails (assert)",
+            "body": "function () {\n    assert.fail('FAIL');\n  }",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "failed",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0,
+            "err": {
+              "stack": "AssertionError [ERR_ASSERTION]: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:10:12)\n    at processImmediate (internal/timers.js:461:21)",
+              "message": "FAIL",
+              "generatedMessage": false,
+              "name": "AssertionError",
+              "code": "ERR_ASSERTION",
+              "operator": "fail",
+              "constructorName": "AssertionError"
+            }
+          },
+          {
+            "title": "test that fails (Error)",
+            "body": "function () {\n    throw new Error('FAIL');\n  }",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "failed",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0,
+            "err": {
+              "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:14:11)\n    at processImmediate (internal/timers.js:461:21)",
+              "message": "FAIL",
+              "constructorName": "Error"
+            }
+          },
+          {
+            "title": "test that fails with circular Error",
+            "body": "function () {\n    var err = new Error('FAIL');\n    err.self = err;\n    throw err;\n  }",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "failed",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0,
+            "err": {
+              "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:18:15)\n    at processImmediate (internal/timers.js:461:21)",
+              "message": "FAIL",
+              "self": {
+                "self": "Error: FAIL"
+              },
+              "constructorName": "Error"
+            }
+          },
+          {
+            "title": "test that is skipped",
+            "body": "function () {\n    this.skip();\n  }",
+            "timedOut": false,
+            "pending": true,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "another test that is skipped",
+            "body": "",
+            "timedOut": false,
+            "pending": true,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test that is slow",
+            "body": "function (done) {\n    this.slow(0);\n    setTimeout(done, 1);\n  }",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 3,
+            "state": "passed",
+            "speed": "slow",
+            "timeout": 2000,
+            "slow": 0,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "",
+            "body": "function testWithNoTitle() {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          }
+        ],
+        "suites": [
+          {
+            "title": "empty suite with nested",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "suites": [
+              {
+                "title": "nested empty suite",
+                "pending": false,
+                "root": false,
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1
+              }
+            ]
+          },
+          {
+            "title": "nested suite",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "tests": [
+              {
+                "title": "nested suite test that passes",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "nested suite test that fails",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:44:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "nested suite test that is skipped",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "nested suite another test that is skipped",
+                "body": "",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "suite two",
+        "pending": false,
+        "root": false,
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1,
+        "tests": [
+          {
+            "title": "test one",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test two",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test three",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          }
+        ]
+      },
+      {
+        "title": "suites with hooks",
+        "pending": false,
+        "root": false,
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1,
+        "suites": [
+          {
+            "title": "suite with beforeEach hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_beforeEach": [
+              {
+                "title": "\"before each\" hook",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:70:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 1,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with before hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_beforeAll": [
+              {
+                "title": "\"before all\" hook",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:84:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with afterEach hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_afterEach": [
+              {
+                "title": "\"after each\" hook",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 1,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:98:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with after hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_afterAll": [
+              {
+                "title": "\"after all\" hook",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:112:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with failing beforeEach hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_beforeEach": [
+              {
+                "title": "\"before each\" hook: failAfterOne for \"failing test\"",
+                "originalTitle": "\"before each\" hook: failAfterOne",
+                "body": "function failAfterOne() {\n      if (count > 0) throw new Error('Before Each Hook Error');\n      count += 1;\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: Before Each Hook Error\n    at Context.failAfterOne (test/fixtures/mocha-test.fixture.js:123:28)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "Before Each Hook Error",
+                  "constructorName": "Error"
+                }
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with failing before hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_beforeAll": [
+              {
+                "title": "\"before all\" hook for \"passing test\"",
+                "originalTitle": "\"before all\" hook",
+                "body": "function () {\n      throw new Error('Before Hook Error');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: Before Hook Error\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:140:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "Before Hook Error",
+                  "constructorName": "Error"
+                }
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with failing afterEach hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_afterEach": [
+              {
+                "title": "\"after each\" hook: failAfterOne for \"failing test\"",
+                "originalTitle": "\"after each\" hook: failAfterOne",
+                "body": "function failAfterOne() {\n      if (count > 0) throw new Error('After Each Hook Error');\n      count += 1;\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: After Each Hook Error\n    at Context.failAfterOne (test/fixtures/mocha-test.fixture.js:158:28)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "After Each Hook Error",
+                  "constructorName": "Error"
+                }
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 1,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:165:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          },
+          {
+            "title": "suite with failing after hook",
+            "pending": false,
+            "root": false,
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "_afterAll": [
+              {
+                "title": "\"after all\" hook: fail for \"skipped test\"",
+                "originalTitle": "\"after all\" hook: fail",
+                "body": "function fail() {\n      throw new Error('After Hook Error');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "hook",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: After Hook Error\n    at Context.fail (test/fixtures/mocha-test.fixture.js:175:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "After Hook Error",
+                  "constructorName": "Error"
+                }
+              }
+            ],
+            "tests": [
+              {
+                "title": "passing test",
+                "body": "function () {}",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "passed",
+                "speed": "fast",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              },
+              {
+                "title": "failing test",
+                "body": "function () {\n      throw new Error('FAIL');\n    }",
+                "timedOut": false,
+                "pending": false,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "state": "failed",
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0,
+                "err": {
+                  "stack": "Error: FAIL\n    at Context.<anonymous> (test/fixtures/mocha-test.fixture.js:181:13)\n    at processImmediate (internal/timers.js:461:21)",
+                  "message": "FAIL",
+                  "constructorName": "Error"
+                }
+              },
+              {
+                "title": "skipped test",
+                "body": "function () {\n      this.skip();\n    }",
+                "timedOut": false,
+                "pending": true,
+                "type": "test",
+                "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+                "duration": 0,
+                "timeout": 2000,
+                "slow": 75,
+                "retries": -1,
+                "currentRetry": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "suite grep test",
+        "pending": false,
+        "root": false,
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1,
+        "tests": [
+          {
+            "title": "grep test A",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 1,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "grep test B",
+            "body": "function () {}",
+            "timedOut": false,
+            "pending": false,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test this.skip()",
+            "body": "function () {\n    this.skip();\n  }",
+            "timedOut": false,
+            "pending": true,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "duration": 0,
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          },
+          {
+            "title": "test it.skip()",
+            "body": "",
+            "timedOut": false,
+            "pending": true,
+            "type": "test",
+            "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+            "timeout": 2000,
+            "slow": 75,
+            "retries": -1,
+            "currentRetry": 0
+          }
+        ]
+      },
+      {
+        "title": "empty suite",
+        "pending": false,
+        "root": false,
+        "file": "/Users/patrick/Code/mocha-json-serialize-reporter/test/fixtures/mocha-test.fixture.js",
+        "timeout": 2000,
+        "slow": 75,
+        "retries": -1
+      }
+    ]
+  },
+  "stats": {
+    "suites": 13,
+    "tests": 38,
+    "passes": 17,
+    "pending": 11,
+    "failures": 14,
+    "start": "2021-05-14T23:57:53.235Z",
+    "end": "2021-05-14T23:57:53.258Z",
+    "duration": 23
+  }
+}
