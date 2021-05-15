@@ -27,37 +27,37 @@ mocha-json-runner --help
 ```
 
 ```text
-mocha-json-runner [json..]
+mocha-json-runner <json>
 
 Playback JSON test results with Mocha
 
-Commands
-  mocha-json-runner debug [json..]  Playback JSON test results with Mocha
-                                                                       [default]
-
 Reporting & Output
-  --color, -c, --colors                     Force-enable color output  [boolean]
-  --diff                                    Show diff on failure
+  -c, --color, --colors                     Force-enable color output  [boolean]
+      --diff                                Show diff on failure
                                                        [boolean] [default: true]
-  --full-trace                              Display full stack traces  [boolean]
-  --growl, -G                               Enable Growl notifications [boolean]
-  --inline-diffs                            Display actual/expected differences
+      --full-trace                          Display full stack traces  [boolean]
+  -G, --growl                               Enable Growl notifications [boolean]
+      --inline-diffs                        Display actual/expected differences
                                             inline within each string  [boolean]
-  --reporter, -R                            Specify reporter to use
+  -R, --reporter                            Specify reporter to use
                                                       [string] [default: "spec"]
-  --reporter-option, --reporter-options,    Reporter-specific options
-  -O                                        (<k=v,[k1=v1,..]>)           [array]
+  -O, --reporter-option,                    Reporter-specific options
+  --reporter-options                        (<k=v,[k1=v1,..]>)           [array]
+      --warn-on-missing-state               Warn when test is missing `state`.
+                                            Outputs to stderr. If mocha was run
+                                            with `--grep` this would produce
+                                            warnings for tests not matching.
 
 File Handling
-  --require, -r  Require module                        [array] [default: (none)]
+  -r, --require  Require module                        [array] [default: (none)]
 
 Positional Arguments
   json  One file to load and playback
 
 Other Options
-  --help, -h     Show usage information & exit                         [boolean]
-  --version, -V  Show version number & exit                            [boolean]
-  --reporters    List built-in reporters & exit                        [boolean]
+  -h, --help       Show usage information & exit                       [boolean]
+  -V, --version    Show version number & exit                          [boolean]
+      --reporters  List built-in reporters & exit                      [boolean]
 ```
 
 ### Programmatically
