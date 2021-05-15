@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/plasticrake/mocha-json-runner/compare/v1.3.0...v1.4.0) (2021-05-15)
+
+
+### Features
+
+* add warn-on-missing-state configuration ([#16](https://github.com/plasticrake/mocha-json-runner/issues/16)) ([ca20856](https://github.com/plasticrake/mocha-json-runner/commit/ca208565fb851ec4258201e853cdbf0b7255ee66)), closes [plasticrake/mocha-json-serialize-reporter#21](https://github.com/plasticrake/mocha-json-serialize-reporter/issues/21)
+
 ## [1.3.0](https://github.com/plasticrake/mocha-json-runner/compare/v1.2.2...v1.3.0) (2021-05-15)
 
 
