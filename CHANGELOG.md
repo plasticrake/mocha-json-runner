@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/plasticrake/mocha-json-runner/compare/v1.2.2...v1.3.0) (2021-05-15)
+
+
+### Features
+
+* output hook failures ([28fdc7f](https://github.com/plasticrake/mocha-json-runner/commit/28fdc7f856d447a6de87031345c95ac12b2dc330))
+
+
+### Bug Fixes
+
+* support for Mocha v8.2 ([4fef6b2](https://github.com/plasticrake/mocha-json-runner/commit/4fef6b29c48f4e5002e5c408adafae0d69039787))
+
 ### [1.2.2](https://github.com/plasticrake/mocha-json-runner/compare/v1.2.1...v1.2.2) (2020-10-29)
 
 ### [1.2.1](https://github.com/plasticrake/mocha-json-runner/compare/v1.2.0...v1.2.1) (2020-01-07)
