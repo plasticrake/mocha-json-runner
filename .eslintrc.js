@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: false,
     commonjs: true,
-    node: false,
+    node: true,
   },
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
   overrides: [

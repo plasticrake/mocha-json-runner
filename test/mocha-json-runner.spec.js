@@ -4,6 +4,7 @@ const rewire = require('rewire');
 const JsonSerializeReporter = require('mocha-json-serialize-reporter');
 const path = require('path');
 const sinon = require('sinon');
+const { stderr } = require('test-console');
 
 const { reporters } = Mocha;
 
@@ -180,7 +181,7 @@ describe('MochaJsonRunner', function () {
   });
 
   describe('#run', function () {
-    it('should throw when a test has an unexpected state', function () {
+    it('should throw when a test has an unexpected state with warnOnMissingState', function () {
       const runner = new MochaJsonRunner({
         suite: {
           title: '',
@@ -193,9 +194,15 @@ describe('MochaJsonRunner', function () {
         },
       });
 
-      expect(() => {
-        runner.run();
-      }).to.throw('Unexpected test.state');
+      MochaJsonRunner.warnOnMissingState(true);
+
+      expect(
+        stderr.inspectSync(() => {
+          runner.run();
+        })[0]
+      ).to.contain(
+        'Unexpected test.state: an unexpected state and not pending. test: Test with an unexpected state'
+      );
     });
   });
 
