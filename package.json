@@ -23,9 +23,8 @@
   ],
   "scripts": {
     "coverage-report-lcov": "nyc report --reporter=lcov",
-    "lint": "eslint .",
+    "lint": "eslint --ignore-path .gitignore .",
     "release": "standard-version --sign",
-    "pretest": "npm run lint",
     "test": "nyc mocha"
   },
   "dependencies": {
