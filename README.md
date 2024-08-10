@@ -1,10 +1,8 @@
 # Mocha.js JSON Runner
 
 [![NPM Version](https://img.shields.io/npm/v/mocha-json-runner.svg)](https://www.npmjs.com/package/mocha-json-runner)
-[![Build Status](https://travis-ci.com/plasticrake/mocha-json-runner.svg?branch=master)](https://travis-ci.com/plasticrake/mocha-json-runner)
-[![codecov](https://codecov.io/gh/plasticrake/mocha-json-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/plasticrake/mocha-json-runner)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/plasticrake/mocha-json-runner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/plasticrake/mocha-json-runner/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/plasticrake/mocha-json-runner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/plasticrake/mocha-json-runner/context:javascript)
+[![Build Status](https://github.com/plasticrake/mocha-json-runner/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/plasticrake/mocha-json-runner/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Coverage Status](https://coveralls.io/repos/github/plasticrake/mocha-json-runner/badge.svg?branch=master)](https://coveralls.io/github/plasticrake/mocha-json-runner?branch=master)
 
 **A [Mocha.js](https://mochajs.org/) runner that replays from JSON input**
 
