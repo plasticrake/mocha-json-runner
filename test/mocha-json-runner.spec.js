@@ -1,10 +1,11 @@
+const path = require('node:path');
+const process = require('node:process');
 const { expect } = require('chai');
 const Mocha = require('mocha');
 const rewire = require('rewire');
-const JsonSerializeReporter = require('mocha-json-serialize-reporter');
-const path = require('path');
 const sinon = require('sinon');
 const { stderr } = require('test-console');
+const JsonSerializeReporter = require('mocha-json-serialize-reporter');
 
 const { reporters } = Mocha;
 
@@ -36,10 +37,11 @@ function runRunner(runner) {
 
   try {
     runner.run();
-  } catch (err) {
+  } catch (error) {
     sinon.restore();
-    throw err;
+    throw error;
   }
+
   sinon.restore();
   return stdout.join('\n');
 }
@@ -49,10 +51,10 @@ async function runJsonSerializeReporter(files) {
   mocha.reporter(JsonSerializeReporter);
 
   if (files && files.length > 0) {
-    files.forEach(function (file) {
+    for (const file of files) {
       delete require.cache[require.resolve(file)];
       mocha.addFile(path.resolve('./test', file));
-    });
+    }
   }
 
   const stdout = [];
@@ -63,9 +65,9 @@ async function runJsonSerializeReporter(files) {
   await new Promise((resolve, reject) => {
     try {
       mocha.run(resolve);
-    } catch (err) {
+    } catch (error) {
       sinon.restore();
-      reject(err);
+      reject(error);
     }
   });
 
@@ -80,7 +82,7 @@ function testReporters(obj) {
     runner = new MochaJsonRunner(JSON.stringify(obj));
   });
 
-  reportersArray.forEach(function (Reporter) {
+  for (const Reporter of reportersArray) {
     describe(Reporter.name, function () {
       it('should run without error', function () {
         // eslint-disable-next-line no-new
@@ -110,8 +112,9 @@ function testReporters(obj) {
               if (key === 'end' || key === 'start') {
                 return new Date(value);
               }
+
               return value;
-            }
+            },
           );
 
           expect(runnerStats).to.eql(obj.stats);
@@ -127,7 +130,7 @@ function testReporters(obj) {
         });
       }
     });
-  });
+  }
 }
 
 describe('MochaJsonRunner', function () {
@@ -199,9 +202,9 @@ describe('MochaJsonRunner', function () {
       expect(
         stderr.inspectSync(() => {
           runner.run();
-        })[0]
+        })[0],
       ).to.contain(
-        'Unexpected test.state: an unexpected state and not pending. test: Test with an unexpected state'
+        'Unexpected test.state: an unexpected state and not pending. test: Test with an unexpected state',
       );
     });
   });

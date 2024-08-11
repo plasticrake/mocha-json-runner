@@ -1,0 +1,30 @@
+{
+  "prettier": true,
+  "rules": {
+    "capitalized-comments": "off",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "import/order": ["error", { "newlines-between": "ignore" }],
+    "no-eq-null": "off",
+    "no-shadow": ["error"],
+    "unicorn/no-negated-condition": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/prevent-abbreviations": "off"
+  },
+  "overrides": [
+    {
+      "prettier": true,
+      "files": "test/**/*.js",
+      "envs": ["node", "mocha"],
+      "rules": {
+        "func-names": "off",
+        "prefer-arrow-callback": "off"
+      }
+    },
+    {
+      "files": "examples/**/*.js",
+      "rules": {
+        "no-new": "off"
+      }
+    }
+  ]
+}
