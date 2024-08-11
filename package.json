@@ -1,6 +1,6 @@
 {
   "name": "mocha-json-runner",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "A Mocha.js runner that replays from JSON input",
   "keywords": [
     "mocha",

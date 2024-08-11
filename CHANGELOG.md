@@ -1,6 +1,21 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [2.0.0](https://github.com/plasticrake/mocha-json-runner/compare/v1.4.0...v2.0.0) (2024-08-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This project is now exported as an ES Module
+* Requires node v18 or later
+
+* Remove node v12, v14, v16 from ci ([#23](https://github.com/plasticrake/mocha-json-runner/issues/23)) ([2cfd4c5](https://github.com/plasticrake/mocha-json-runner/commit/2cfd4c589284f218503b67cc116013470b2df342))
+
+
+### Features
+
+* Rewrite to ES Module ([#24](https://github.com/plasticrake/mocha-json-runner/issues/24)) ([c4c09bc](https://github.com/plasticrake/mocha-json-runner/commit/c4c09bc0fdd8f7c07601ab6aa470b9710b4a81ff))
 
 ## [1.4.0](https://github.com/plasticrake/mocha-json-runner/compare/v1.3.0...v1.4.0) (2021-05-15)
 
