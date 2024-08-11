@@ -1,5 +1,5 @@
-const Mocha = require('mocha');
-const MochaJsonRunner = require('mocha-json-runner');
+import Mocha from 'mocha';
+import MochaJsonRunner from 'mocha-json-runner';
 
 const json = JSON.stringify({
   suite: {
