@@ -1,4 +1,7 @@
 {
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
   "prettier": true,
   "rules": {
     "capitalized-comments": "off",
@@ -7,13 +10,12 @@
     "no-eq-null": "off",
     "no-shadow": ["error"],
     "unicorn/no-negated-condition": "off",
-    "unicorn/prefer-module": "off",
     "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [
     {
       "prettier": true,
-      "files": "test/**/*.js",
+      "files": "test/**/*.{mjs,cjs}",
       "envs": ["node", "mocha"],
       "rules": {
         "func-names": "off",
@@ -21,7 +23,7 @@
       }
     },
     {
-      "files": "examples/**/*.js",
+      "files": "examples/**/*.{mjs,cjs}",
       "rules": {
         "no-new": "off"
       }

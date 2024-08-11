@@ -1,13 +1,12 @@
-const path = require('node:path');
-const process = require('node:process');
-const { expect } = require('chai');
-const Mocha = require('mocha');
-const rewire = require('rewire');
-const sinon = require('sinon');
-const { stderr } = require('test-console');
-const JsonSerializeReporter = require('mocha-json-serialize-reporter');
+import path from 'node:path';
+import process from 'node:process';
+import { expect } from 'chai';
+import Mocha, { reporters } from 'mocha';
+import sinon from 'sinon';
+import { stderr } from 'test-console';
+import JsonSerializeReporter from 'mocha-json-serialize-reporter';
 
-const { reporters } = Mocha;
+import MochaJsonRunner from '../lib/mocha-json-runner.mjs';
 
 const reportersArray = [
   reporters.Doc,
@@ -28,8 +27,6 @@ const reportersArray = [
 
 const STATE_FAILED = 'failed';
 const STATE_PASSED = 'passed';
-
-const MochaJsonRunner = rewire('../lib/mocha-json-runner');
 
 function runRunner(runner) {
   const stdout = [];
@@ -52,7 +49,7 @@ async function runJsonSerializeReporter(files) {
 
   if (files && files.length > 0) {
     for (const file of files) {
-      delete require.cache[require.resolve(file)];
+      // delete require.cache[require.resolve(file)];
       mocha.addFile(path.resolve('./test', file));
     }
   }
@@ -235,7 +232,7 @@ describe('back and forth 🐍', function () {
 
   before(async function () {
     const json = await runJsonSerializeReporter([
-      './fixtures/mocha-test.fixture.js',
+      './fixtures/mocha-test.fixture.cjs',
     ]);
 
     objOutput = JSON.parse(json);
