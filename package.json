@@ -49,5 +49,8 @@
   },
   "peerDependencies": {
     "mocha": ">=6"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js 14
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -32,8 +32,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: ['12', '14', '16', '18', '20', '22']
-        mocha-version: ['6', '7', '8']
+        node-version: ['18', '20', '22']
+        mocha-version: ['6', '7', '8', '9', '10']
 
     name: 'Test, node: ${{ matrix.node-version }} mocha: ${{ matrix.mocha-version }}'
 
@@ -62,7 +62,7 @@ jobs:
         run: npm run coverage-report-lcov
 
       - name: Upload Coverage to Coveralls
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
           flag-name: ${{ runner.os }}-node-${{ matrix.node-version }}-mocha-${{ matrix.mocha-version }}
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.github_token }}
           parallel-finished: true
